@@ -15,6 +15,7 @@ class AdminAuthController extends Controller
         try{
             return view('admin.auth.login');
         }catch (\Throwable $exception){
+            abort(500);
             dd($exception->getMessage());
         }
     }

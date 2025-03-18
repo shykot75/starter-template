@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminAuthController;
+use App\Http\Controllers\Admin\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('admin/login', [AdminAuthController::class, 'loginForm'])->name('admin.loginForm');
+
+ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+     Route::get('login', [AdminAuthController::class, 'loginForm'])->name('loginForm');
+
+     // Admin / User Dashboard
+     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+ });
+
+
 
